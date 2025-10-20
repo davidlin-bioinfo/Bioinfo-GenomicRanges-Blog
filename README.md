@@ -34,7 +34,7 @@ A genomic region refers to a continuous segment on a chromosome, typically defin
 
 In our project, we filtered data based on experimental needs—excluding sex chromosomes, keeping regions under 150 bp, and focusing on segments with dual transcription start sites. This gave us a clean CSV file for further analysis.
 
-![Fig. 2: The input CSV file after filtering](Blog/Practical TSS Variant Analysis Using GenomicRanges 1e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-02_at_16.54.23.png)
+![Fig. 2: The input CSV file after filtering](Blog/Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-02_at_16.54.23.png)
 
 Fig. 2: The input CSV file after filtering
 
