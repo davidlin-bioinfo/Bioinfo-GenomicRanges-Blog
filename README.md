@@ -15,7 +15,7 @@ In cancer research, variations at transcription start sites (TSSs) play a crucia
 
 Our goal in this analysis is to use the GenomicRanges package to investigate variations in these dual TSS regions, with a particular focus on their overlap with known pathogenic variants. Leveraging the tools within GenomicRanges, we analyse how these dual promoter-associated TSSs intersect with variants reported in public datasets such as ClinVar and 100k Genomes Project. Ultimately, we aim to assess the potential roles these variants may play in cancer.
 
-![Fig1. Different types of transcription initiation patterns in gene promoters[1]](Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-03_at_07.59.51.png)
+![Fig1. Different types of transcription initiation patterns in gene promoters[1]](Blog/Practical TSS Variant Analysis Using GenomicRanges 1e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-03_at_07.59.51.png)
 
 Fig1. Different types of transcription initiation patterns in gene promoters[1]
 
