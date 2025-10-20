@@ -15,7 +15,7 @@ In cancer research, variations at transcription start sites (TSSs) play a crucia
 
 Our goal in this analysis is to use the GenomicRanges package to investigate variations in these dual TSS regions, with a particular focus on their overlap with known pathogenic variants. Leveraging the tools within GenomicRanges, we analyse how these dual promoter-associated TSSs intersect with variants reported in public datasets such as ClinVar and 100k Genomes Project. Ultimately, we aim to assess the potential roles these variants may play in cancer.
 
-![Fig1. Different types of transcription initiation patterns in gene promoters[1]](Blog/Practical TSS Variant Analysis Using GenomicRanges 1e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-03_at_07.59.51.png)
+![Fig1. Different types of transcription initiation patterns in gene promoters[1]](Blog/Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-03_at_07.59.51.png)
 
 Fig1. Different types of transcription initiation patterns in gene promoters[1]
 
@@ -44,7 +44,7 @@ This is the heart of GenomicRanges. Think of a GRanges object as a “smart” v
 
 A key step is to clearly define the information needed for analysis—for example, after loading the CSV, we created a GRanges object using coordinates, strand, gene names, and a YC/YR promoter dominance label to enable downstream stratification.
 
-![Screenshot 2025-05-06 at 15.17.39.png](Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/9b39c24b-6122-4ca8-a97d-373aa840e977.png)
+![Screenshot 2025-05-06 at 15.17.39.png](Blog/Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/9b39c24b-6122-4ca8-a97d-373aa840e977.png)
 
 ## **`*Applying GenomicRanges to Analysis`**(459 Words)*
 
@@ -54,7 +54,7 @@ We will first define the regions, then perform the overlap analysis, and finally
 
 When analyzing TSS regions, we not only focus on the TSS itself but also consider the surrounding upstream and downstream regions, as they may contain key regulatory elements. To comprehensively study transcriptional regulation, we expand the TSS regions to include 100 base pairs upstream and downstream as flanking sites. As a result, we define two comparison groups: dual-promoter TSS regions and flanking sites.
 
-![Screenshot 2025-05-06 at 15.18.51.png](Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-06_at_15.18.51.png)
+![Screenshot 2025-05-06 at 15.18.51.png](Blog/Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-06_at_15.18.51.png)
 
 In this code, the `flank()` function extends the TSS regions by 100 base pairs both upstream and downstream. By setting `ignore.strand = FALSE`, we ensure strand orientation is respected, which is essential for correctly defining the upstream and downstream regions depending on whether the gene is on the forward or reverse strand.
 You can also apply other GenomicRanges functions—such as `reduce()` for merging regions, `subset()` for filtering, `distance()` for measuring distances between intervals to further refine and explore your results.
@@ -65,7 +65,7 @@ You can also apply other GenomicRanges functions—such as `reduce()` for mergin
 
 Here I using TSS positions as examples:
 
-![Screenshot 2025-05-06 at 15.19.15.png](Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-06_at_15.19.15.png)
+![Screenshot 2025-05-06 at 15.19.15.png](Blog/Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-06_at_15.19.15.png)
 
 One of the major advantages of using **GenomicRanges** is that it shares a unified data structure with other **Bioconductor** packages(e.g. VariantAnnotation). This allows for seamless conversion of your VCF file into a **GRanges** object once loaded, enabling easy downstream analysis. The `findOverlaps()` function identifies overlapping regions between TSS and variant positions, and the returned index pairs let us quickly extract the relevant entries from both datasets for further functional or clinical investigation.
 
@@ -73,7 +73,7 @@ One of the major advantages of using **GenomicRanges** is that it shares a unifi
 
 Once we’ve find overlaps, the next step is to annotate these variants with biologically meaningful information—such as clinical significance. 
 
-![Screenshot 2025-05-06 at 15.19.52.png](Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-06_at_15.19.52.png)
+![Screenshot 2025-05-06 at 15.19.52.png](Blog/Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-06_at_15.19.52.png)
 
 We using data from **ClinVar**, then extract annotations CLNSIG from info column, which indicates whether a variant has been linked to disease.
 
@@ -81,15 +81,15 @@ We using data from **ClinVar**, then extract annotations CLNSIG from info column
 
 To make the findings more intuitive, we can visualise the distribution of variants—broken down by promoter type (TSS vs Flanking sites) and annotated significance. 
 
-![Screenshot 2025-05-06 at 15.20.37.png](Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-06_at_15.20.37.png)
+![Screenshot 2025-05-06 at 15.20.37.png](Blog/Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-06_at_15.20.37.png)
 
 Through this approach, we not only pinpoint variants within TSS regions, but also assess their disease relevance and distribution across promoter categories—offering a more complete picture of their potential functional roles. Proportion of pathogenic variants is markedly higher at dual-promoter TSS regions (27.9%) compared to flanking regions (9.5%), suggesting stronger disease association at promoter sites.[Fig.2]
 
-![Fig. 2](Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-03_at_11.04.17.png)
+![Fig. 2](Blog/Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-03_at_11.04.17.png)
 
 Fig. 2
 
-![Screenshot 2025-05-03 at 11.04.10.png](Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-03_at_11.04.10.png)
+![Screenshot 2025-05-03 at 11.04.10.png](Blog/Practical%20TSS%20Variant%20Analysis%20Using%20GenomicRanges%201e836f2bf90a80b89430fc6548ed29f2/Screenshot_2025-05-03_at_11.04.10.png)
 
 ### `*In the end`(41 Words)*
 
